@@ -1,0 +1,161 @@
+class PersistentSegmentTree {
+
+    // Node Structure
+    static class Node {
+        int sum;
+        Node left, right;
+
+        Node(int sum) {
+            this.sum = sum;
+        }
+    }
+
+    // Initial Inventory Array
+    static int arr[] = {12, 7, 25, 18, 9, 14, 6, 30};
+
+    // Build Initial Segment Tree
+    static Node build(int start, int end) {
+
+        if (start == end)
+            return new Node(arr[start]);
+
+        int mid = (start + end) / 2;
+
+        Node node = new Node(0);
+
+        node.left = build(start, mid);
+        node.right = build(mid + 1, end);
+
+        node.sum = node.left.sum + node.right.sum;
+
+        return node;
+    }
+
+    // Persistent Update
+    static Node update(Node prev, int start, int end,
+                       int idx, int value) {
+
+        if (start == end)
+            return new Node(value);
+
+        int mid = (start + end) / 2;
+
+        Node node = new Node(0);
+
+        if (idx <= mid) {
+
+            node.left = update(prev.left, start, mid, idx, value);
+            node.right = prev.right;
+
+        } else {
+
+            node.left = prev.left;
+            node.right = update(prev.right, mid + 1, end, idx, value);
+        }
+
+        node.sum = node.left.sum + node.right.sum;
+
+        return node;
+    }
+
+    // Range Sum Query
+    static int query(Node node, int start, int end,
+                     int l, int r) {
+
+        if (r < start || end < l)
+            return 0;
+
+        if (l <= start && end <= r)
+            return node.sum;
+
+        int mid = (start + end) / 2;
+
+        return query(node.left, start, mid, l, r) +
+               query(node.right, mid + 1, end, l, r);
+    }
+
+    // Main Method
+    public static void main(String[] args) {
+
+        int n = arr.length;
+
+        // Version V0
+        Node V0 = build(0, n - 1);
+
+        // Version V1 : stock[3] += 50
+        Node V1 = update(V0, 0, n - 1, 3, 68);
+
+        // Version V2 : stock[6] -= 4
+        Node V2 = update(V1, 0, n - 1, 6, 2);
+
+        // Version V3 : stock[3] -= 12
+        Node V3 = update(V2, 0, n - 1, 3, 56);
+
+        // Initial Inventory Array
+        System.out.println("INITIAL INVENTORY ARRAY:");
+        for (int x : arr)
+            System.out.print(x + " ");
+
+        // V0 Structure
+        System.out.println("\n\nV0 TREE STRUCTURE\n");
+
+        System.out.println("                121");
+        System.out.println("             /        \\");
+        System.out.println("           62          59");
+        System.out.println("         /   \\       /    \\");
+        System.out.println("       19     43    23     36");
+        System.out.println("      / \\    / \\   / \\    / \\");
+        System.out.println("    12  7  25 18  9 14   6 30");
+
+        // V1 Structure
+        System.out.println("\n\nV1 TREE STRUCTURE\n");
+
+        System.out.println("                171");
+        System.out.println("             /         \\");
+        System.out.println("           112          59");
+        System.out.println("         /    \\       /    \\");
+        System.out.println("       19      93    23     36");
+        System.out.println("      / \\     / \\   / \\    / \\");
+        System.out.println("    12  7   25 68  9 14   6 30");
+
+        // V2 Structure
+        System.out.println("\n\nV2 TREE STRUCTURE\n");
+
+        System.out.println("                167");
+        System.out.println("             /         \\");
+        System.out.println("           112          55");
+        System.out.println("         /    \\       /    \\");
+        System.out.println("       19      93    23     32");
+        System.out.println("      / \\     / \\   / \\    / \\");
+        System.out.println("    12  7   25 68  9 14   2 30");
+
+        // V3 Structure
+        System.out.println("\n\nV3 TREE STRUCTURE\n");
+
+        System.out.println("                155");
+        System.out.println("             /         \\");
+        System.out.println("           100          55");
+        System.out.println("         /    \\       /    \\");
+        System.out.println("       19      81    23     32");
+        System.out.println("      / \\     / \\   / \\    / \\");
+        System.out.println("    12  7   25 56  9 14   2 30");
+
+        // Range Sum Query
+        System.out.println("\n\nRANGE SUM QUERY [3...6]\n");
+
+        System.out.println("V0 = " +
+                query(V0, 0, n - 1, 3, 6));
+
+        System.out.println("V1 = " +
+                query(V1, 0, n - 1, 3, 6));
+
+        System.out.println("V2 = " +
+                query(V2, 0, n - 1, 3, 6));
+
+        System.out.println("V3 = " +
+                query(V3, 0, n - 1, 3, 6));
+
+        System.out.println("\nPersistent Segment Tree created successfully.");
+    }
+}
+
