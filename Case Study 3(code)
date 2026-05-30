@@ -1,0 +1,141 @@
+public class HyderabadMetroMST {
+
+    public static void main(String[] args) {
+
+        // STEP 1
+        System.out.println("STEP 1\n");
+
+        System.out.println("      M");
+        System.out.println("      |");
+        System.out.println("     7");
+        System.out.println("      |");
+        System.out.println("      L");
+
+        System.out.println("\nTotal Cost = 7\n");
+
+
+        // STEP 2
+        System.out.println("STEP 2\n");
+
+        System.out.println("      M");
+        System.out.println("      |");
+        System.out.println("     7");
+        System.out.println("      |");
+        System.out.println("      L");
+        System.out.println("       \\");
+        System.out.println("        \\4");
+        System.out.println("         \\");
+        System.out.println("          S");
+
+        System.out.println("\nTotal Cost = 7 + 4 = 11\n");
+
+
+        // STEP 3
+        System.out.println("STEP 3\n");
+
+        System.out.println("      M");
+        System.out.println("      |");
+        System.out.println("     7");
+        System.out.println("      |");
+        System.out.println("      L");
+        System.out.println("       \\");
+        System.out.println("        \\4");
+        System.out.println("         \\");
+        System.out.println("          S");
+        System.out.println("           \\");
+        System.out.println("            \\6");
+        System.out.println("             \\");
+        System.out.println("              W");
+
+        System.out.println("\nTotal Cost = 7 + 4 + 6 = 17\n");
+
+
+        // STEP 4
+        System.out.println("STEP 4\n");
+
+        System.out.println("      M");
+        System.out.println("      |");
+        System.out.println("     7");
+        System.out.println("      |");
+        System.out.println("      L");
+        System.out.println("       \\");
+        System.out.println("        \\4");
+        System.out.println("         \\");
+        System.out.println("          S");
+        System.out.println("           \\");
+        System.out.println("            \\6");
+        System.out.println("             \\");
+        System.out.println("              W");
+        System.out.println("             /");
+        System.out.println("           5/");
+        System.out.println("           /");
+        System.out.println("          K");
+
+        System.out.println("\nTotal Cost = 7 + 4 + 6 + 5 = 22\n");
+
+
+        // STEP 5
+        System.out.println("STEP 5\n");
+
+        System.out.println("          Y");
+        System.out.println("         /");
+        System.out.println("       8/");
+        System.out.println("       /");
+        System.out.println("      L");
+        System.out.println("     / \\");
+        System.out.println("   7/   \\4");
+        System.out.println("   /     \\");
+        System.out.println("  M       S");
+        System.out.println("           \\");
+        System.out.println("            \\6");
+        System.out.println("             \\");
+        System.out.println("              W");
+        System.out.println("             /");
+        System.out.println("           5/");
+        System.out.println("           /");
+        System.out.println("          K");
+
+        System.out.println("\nTotal Cost = 7 + 4 + 6 + 5 + 8 = 30\n");
+
+
+        // STEP 6
+        System.out.println("STEP 6\n");
+
+        System.out.println("          H");
+        System.out.println("         /");
+        System.out.println("       9/");
+        System.out.println("       /");
+        System.out.println("      Y");
+        System.out.println("     /");
+        System.out.println("   8/");
+        System.out.println("   /");
+        System.out.println("  L");
+        System.out.println(" / \\");
+        System.out.println("7/   \\4");
+        System.out.println("/     \\");
+        System.out.println("M       S");
+        System.out.println("         \\");
+        System.out.println("          \\6");
+        System.out.println("           \\");
+        System.out.println("            W");
+        System.out.println("           /");
+        System.out.println("         5/");
+        System.out.println("         /");
+        System.out.println("        K");
+
+        System.out.println("\nTotal Cost = 7 + 4 + 6 + 5 + 8 + 9 = 39\n");
+
+
+        // FINAL MST
+        System.out.println("FINAL MST EDGES\n");
+
+        System.out.println("M - L = 7");
+        System.out.println("L - S = 4");
+        System.out.println("S - W = 6");
+        System.out.println("W - K = 5");
+        System.out.println("L - Y = 8");
+        System.out.println("Y - H = 9");
+
+        System.out.println("\nFINAL MINIMUM COST = 39");
+    }
+}
